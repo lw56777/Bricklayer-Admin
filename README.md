@@ -6,6 +6,10 @@
 
 Bricklayer Admin 是一个基于 Vue3 + Element Plus 的开箱即用的后台管理系统模板。致力于为开发者提供一套完整的企业级后台管理解决方案，让您能够快速搭建项目原型，专注于业务逻辑开发。
 
+## 🌐 演示地址
+
+[https://bricklayer-admin.vercel.app](https://bricklayer-admin.vercel.app)
+
 ## ✨ 特性
 
 - 🎯 **开箱即用** - 提供完整的项目结构和配置
