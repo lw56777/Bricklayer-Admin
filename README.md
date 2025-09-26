@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="200px" src="src/assets/logo.png" />
+  <img width="200px" src="packages/images/logo.png" />
 </p>
 
 ## 🚀 项目介绍
@@ -59,12 +59,12 @@ Bricklayer Admin 是一个基于 Vue3 + Element Plus 的开箱即用的后台管
 ---
 
 <p align="center">
-  <img width="100px" src="src/assets/bricklaying.GIF" />
+  <img width="100px" src="packages/images/bricklaying.GIF" />
 </p>
 
 <p align="center">少写点烂代码，多摸点真·鱼。加油！！！</p>
 
 <p align="center">
-  <img width="100px" src="src/assets/slow.GIF" /> 
-  <img width="100px" src="src/assets/fast.GIF" />
+  <img width="100px" src="packages/images/slow.GIF" /> 
+  <img width="100px" src="packages/images/fast.GIF" />
 </p>
