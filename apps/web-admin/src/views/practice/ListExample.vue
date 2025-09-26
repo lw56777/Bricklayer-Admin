@@ -56,6 +56,7 @@ const emits: TEmitsAttrs[] = [
   {
     type: 'primary',
     name: '搜索',
+    nativeType: 'submit',
     onClick: search,
   },
   {
