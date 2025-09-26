@@ -6,7 +6,6 @@ declare module 'vue-router' {
   interface RouteMeta {
     title?: string;
     icon?: string;
-    hidden?: boolean;
     hideInMenu?: boolean;
   }
 }
@@ -14,79 +13,105 @@ declare module 'vue-router' {
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
+    redirect: {
+      name: 'Login',
+    },
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('~/views/Login.vue'),
+    meta: {
+      title: '登录',
+      hideInMenu: true,
+    },
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: () => import('~/views/Home.vue'),
     meta: {
       title: '首页',
       icon: 'HomeFilled',
     },
-  },
-
-  {
-    path: '/basic',
-    name: 'basic',
-    redirect: '/basic/table-example',
-    meta: {
-      title: '基础示例',
-      icon: 'Menu',
-    },
+    redirect: '/dashboard',
     children: [
       {
-        path: '/basic/table-example',
-        name: 'BasicTableExample',
-        component: () => import('~/views/basic/TableExample.vue'),
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: () => import('~/views/Dashboard.vue'),
         meta: {
-          title: '表格示例',
-          icon: 'Money',
+          title: '仪表盘',
+          icon: 'HomeFilled',
         },
       },
       {
-        path: '/basic/form-example',
-        name: 'BasicFormExample',
-        component: () => import('~/views/basic/FormExample.vue'),
+        path: '/basic',
+        name: 'basic',
+        redirect: '/basic/table-example',
         meta: {
-          title: '表单示例',
-          icon: 'Money',
+          title: '基础示例',
+          icon: 'Menu',
         },
+        children: [
+          {
+            path: '/basic/table-example',
+            name: 'BasicTableExample',
+            component: () => import('~/views/basic/TableExample.vue'),
+            meta: {
+              title: '表格示例',
+              icon: 'Money',
+            },
+          },
+          {
+            path: '/basic/form-example',
+            name: 'BasicFormExample',
+            component: () => import('~/views/basic/FormExample.vue'),
+            meta: {
+              title: '表单示例',
+              icon: 'Money',
+            },
+          },
+          {
+            path: '/basic/dialog-example',
+            name: 'BasicDialogExample',
+            component: () => import('~/views/basic/DialogExample.vue'),
+            meta: {
+              title: '对话框示例',
+              icon: 'Money',
+            },
+          },
+          {
+            path: '/basic/search-example',
+            name: 'BasicSearchExample',
+            component: () => import('~/views/basic/SearchExample.vue'),
+            meta: {
+              title: '搜索示例',
+              icon: 'Money',
+            },
+          },
+        ],
       },
-      {
-        path: '/basic/dialog-example',
-        name: 'BasicDialogExample',
-        component: () => import('~/views/basic/DialogExample.vue'),
-        meta: {
-          title: '对话框示例',
-          icon: 'Money',
-        },
-      },
-      {
-        path: '/basic/search-example',
-        name: 'BasicSearchExample',
-        component: () => import('~/views/basic/SearchExample.vue'),
-        meta: {
-          title: '搜索示例',
-          icon: 'Money',
-        },
-      },
-    ],
-  },
 
-  {
-    path: '/practice',
-    name: 'practice',
-    redirect: '/practice/list-example',
-    meta: {
-      title: '实战示例',
-      icon: 'Menu',
-    },
-    children: [
       {
-        path: '/practice/list-example',
-        name: 'PracticeListExample',
-        component: () => import('~/views/practice/ListExample.vue'),
+        path: '/practice',
+        name: 'practice',
+        redirect: '/practice/list-example',
         meta: {
-          title: '列表示例',
-          icon: 'Money',
+          title: '实战示例',
+          icon: 'Menu',
         },
+        children: [
+          {
+            path: '/practice/list-example',
+            name: 'PracticeListExample',
+            component: () => import('~/views/practice/ListExample.vue'),
+            meta: {
+              title: '列表示例',
+              icon: 'Money',
+            },
+          },
+        ],
       },
     ],
   },

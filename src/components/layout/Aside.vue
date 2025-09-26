@@ -7,23 +7,24 @@ import type { Component } from 'vue';
 const router = useRouter();
 const route = useRoute();
 
-// 图标映射对象，将字符串名称映射到实际的图标组件
 const iconMap: Record<string, Component> = {
   HomeFilled,
   Menu,
   Money,
 };
 
-// 直接从路由配置中获取顶级路由，避免重复渲染
 const menuRoutes = computed(() => {
-  // 直接使用路由器的options获取原始路由配置，避免获取到展开后的所有路由
-  return router.options.routes.filter(route => {
-    // 过滤掉不需要在菜单中显示的路由
-    return !route.meta?.hideInMenu && route.meta?.title;
-  });
+  const homeRoute = router.options.routes.find(route => route.path === '/home');
+
+  if (homeRoute && homeRoute.children) {
+    return homeRoute.children.filter(route => {
+      return !route.meta?.hideInMenu && route.meta?.title;
+    });
+  }
+
+  return [];
 });
 
-// 获取当前激活的菜单项
 const activeMenu = computed(() => route.path);
 </script>
 
@@ -36,7 +37,6 @@ const activeMenu = computed(() => route.path);
         class="border-none h-full min-h-screen bg-transparent!"
       >
         <template v-for="routeItem in menuRoutes" :key="routeItem.path">
-          <!-- 如果有子路由，渲染子菜单 -->
           <el-sub-menu
             v-if="
               routeItem.children &&
@@ -68,7 +68,6 @@ const activeMenu = computed(() => route.path);
             </el-menu-item>
           </el-sub-menu>
 
-          <!-- 普通菜单项 -->
           <el-menu-item v-else :index="routeItem.path">
             <el-icon
               v-if="routeItem.meta?.icon && iconMap[routeItem.meta.icon]"

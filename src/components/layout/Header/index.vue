@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
-import Setting from './Setting.vue';
-import Theme from './Theme.vue';
 import avatar1 from '~/assets/567_1.jpg';
 import avatar2 from '~/assets/567_2.jpg';
 
 const router = useRouter();
+
+const signOut = () => {
+  router.push({
+    name: 'Login',
+  });
+};
 
 const avatar = computed(() => {
   return Math.random() > 0.5 ? avatar1 : avatar2;
@@ -25,13 +29,14 @@ const avatar = computed(() => {
       </li>
 
       <li>
-        <el-avatar
-          class="avatar"
-          :size="30"
-          :src="avatar"
-          cursor-pointer
-          @click="router.push({ name: 'Home' })"
-        />
+        <el-dropdown trigger="click">
+          <el-avatar class="avatar" :size="30" :src="avatar" cursor-pointer />
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item @click="signOut">登出</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </li>
     </ul>
   </div>

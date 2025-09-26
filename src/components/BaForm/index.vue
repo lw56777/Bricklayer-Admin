@@ -39,8 +39,8 @@ defineExpose({
           <slot :name="item.prop">
             <component
               :is="getComponent(item.compType)"
-              v-model="formData[item.compProps]"
-              v-bind="item"
+              v-model="formData[item.prop as typeof formData]"
+              v-bind="item.compProps || {}"
             />
           </slot>
         </el-form-item>

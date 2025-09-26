@@ -40,5 +40,30 @@ export default defineConfig({
   ],
   rules: [
     // 自定义规则
+    [/^z-(\d+)$/, ([, d]) => ({ 'z-index': d })],
+    [/^left-(-?\d+)%$/, ([, d]) => ({ left: `${d}%` })],
+    [/^w-(\d+)%$/, ([, d]) => ({ width: `${d}%` })],
+    [
+      /^translate-([xy])-(-?\d+)%$/,
+      ([, axis, d]) => ({
+        transform: `translate${axis.toUpperCase()}(${d}%)`,
+      }),
+    ],
+    [
+      /^translate-([xy])--(\d+)%$/,
+      ([, axis, d]) => ({
+        transform: `translate${axis.toUpperCase()}(-${d}%)`,
+      }),
+    ],
+    // 支持16进制颜色
+    [
+      /^bg-hex-([a-fA-F0-9]{6})$/,
+      ([, hex]) => ({ 'background-color': `#${hex}` }),
+    ],
+    [/^text-hex-([a-fA-F0-9]{3,6})$/, ([, hex]) => ({ color: `#${hex}` })],
+    [
+      /^border-hex-([a-fA-F0-9]{3,6})$/,
+      ([, hex]) => ({ 'border-color': `#${hex}` }),
+    ],
   ],
 });

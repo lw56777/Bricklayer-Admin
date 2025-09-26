@@ -8,7 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Aside: typeof import('./src/components/layout/Aside.vue')['default']
+    Aside: typeof import('./src/components/Layout/Aside.vue')['default']
     Astral: typeof import('./src/components/Background/Astral.vue')['default']
     Background: typeof import('./src/components/Background/index.vue')['default']
     BaDialog: typeof import('./src/components/BaDialog/index.vue')['default']
@@ -30,6 +30,9 @@ declare module 'vue' {
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDivider: typeof import('element-plus/es')['ElDivider']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
+    ElDropdown: typeof import('element-plus/es')['ElDropdown']
+    ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
+    ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElHeader: typeof import('element-plus/es')['ElHeader']
@@ -56,15 +59,15 @@ declare module 'vue' {
     ElText: typeof import('element-plus/es')['ElText']
     ElTimePicker: typeof import('element-plus/es')['ElTimePicker']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
-    Header: typeof import('./src/components/layout/Header/index.vue')['default']
-    Layout: typeof import('./src/components/layout/index.vue')['default']
+    Header: typeof import('./src/components/Layout/Header/index.vue')['default']
+    Layout: typeof import('./src/components/Layout/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Setting: typeof import('./src/components/layout/Header/Setting.vue')['default']
+    Setting: typeof import('./src/components/Layout/Header/Setting.vue')['default']
     Settings: typeof import('./src/components/Settings/index.vue')['default']
     Signature: typeof import('./src/components/Layout/Header/Signature.vue')['default']
     StreetLamp: typeof import('./src/components/Background/StreetLamp.vue')['default']
-    Theme: typeof import('./src/components/layout/Header/Theme.vue')['default']
+    Theme: typeof import('./src/components/Layout/Header/Theme.vue')['default']
   }
   export interface GlobalDirectives {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']
