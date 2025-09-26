@@ -1,0 +1,16 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.lib.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "strict": false,
+    "paths": {
+      "@bricklayer/hooks": ["../hooks"],
+      "@bricklayer/hooks/*": ["../hooks/*"],
+      "@bricklayer/utils": ["../utils"],
+      "@bricklayer/utils/*": ["../utils/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "**/*.vue", "global.d.ts"],
+  "exclude": ["**/*.vue.d.ts"]
+}

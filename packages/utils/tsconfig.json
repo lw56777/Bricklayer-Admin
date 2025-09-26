@@ -1,0 +1,9 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.lib.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "strict": false
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}

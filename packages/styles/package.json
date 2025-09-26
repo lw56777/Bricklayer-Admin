@@ -1,0 +1,6 @@
+{
+  "name": "@bricklayer/styles",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./common.css"
+}

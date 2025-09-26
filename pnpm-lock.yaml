@@ -8,18 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@element-plus/icons-vue':
-        specifier: ^2.3.2
-        version: 2.3.2(vue@3.5.21(typescript@5.8.3))
-      '@vueuse/core':
-        specifier: ^13.9.0
-        version: 13.9.0(vue@3.5.21(typescript@5.8.3))
-      axios:
-        specifier: ^1.12.2
-        version: 1.12.2
-      element-plus:
-        specifier: ^2.11.2
-        version: 2.11.2(vue@3.5.21(typescript@5.8.3))
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -69,6 +57,58 @@ importers:
       vue-tsc:
         specifier: ^3.0.5
         version: 3.0.6(typescript@5.8.3)
+
+  apps/web-admin:
+    dependencies:
+      '@bricklayer/components':
+        specifier: workspace:*
+        version: link:../../packages/components
+      '@bricklayer/hooks':
+        specifier: workspace:*
+        version: link:../../packages/hooks
+      '@bricklayer/styles':
+        specifier: workspace:*
+        version: link:../../packages/styles
+      '@bricklayer/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
+      '@element-plus/icons-vue':
+        specifier: ^2.3.2
+        version: 2.3.2(vue@3.5.21(typescript@5.8.3))
+      '@vueuse/core':
+        specifier: ^13.9.0
+        version: 13.9.0(vue@3.5.21(typescript@5.8.3))
+      axios:
+        specifier: ^1.12.2
+        version: 1.12.2
+      element-plus:
+        specifier: ^2.11.2
+        version: 2.11.2(vue@3.5.21(typescript@5.8.3))
+
+  packages/components:
+    dependencies:
+      element-plus:
+        specifier: ^2.11.2
+        version: 2.11.2(vue@3.5.21(typescript@5.8.3))
+      vue:
+        specifier: ^3.5.18
+        version: 3.5.21(typescript@5.8.3)
+
+  packages/hooks:
+    dependencies:
+      element-plus:
+        specifier: ^2.11.2
+        version: 2.11.2(vue@3.5.21(typescript@5.8.3))
+      vue:
+        specifier: ^3.5.18
+        version: 3.5.21(typescript@5.8.3)
+      vue-router:
+        specifier: ^4.5.1
+        version: 4.5.1(vue@3.5.21(typescript@5.8.3))
+
+  packages/styles: {}
+
+  packages/utils: {}
 
 packages:
 

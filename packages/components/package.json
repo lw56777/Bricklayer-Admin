@@ -1,0 +1,18 @@
+{
+  "name": "@bricklayer/components",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./BaDialog": "./BaDialog/index.ts",
+    "./BaForm": "./BaForm/index.ts",
+    "./BaSearch": "./BaSearch/index.ts",
+    "./BaTable": "./BaTable/index.vue",
+    "./BaTableColumn": "./BaTable/BaTableColumn/index.ts"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.18",
+    "element-plus": "^2.11.2"
+  }
+}

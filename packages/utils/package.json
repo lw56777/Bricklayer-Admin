@@ -1,0 +1,10 @@
+{
+  "name": "@bricklayer/utils",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    "./tools": "./tools.ts",
+    "./types": "./types.ts"
+  }
+}

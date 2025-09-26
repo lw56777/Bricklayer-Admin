@@ -1,0 +1,22 @@
+{
+  "name": "web-admin",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@bricklayer/components": "workspace:*",
+    "@bricklayer/hooks": "workspace:*",
+    "@bricklayer/styles": "workspace:*",
+    "@bricklayer/utils": "workspace:*",
+    "@element-plus/icons-vue": "^2.3.2",
+    "@vueuse/core": "^13.9.0",
+    "axios": "^1.12.2",
+    "element-plus": "^2.11.2"
+  },
+  "devDependencies": {}
+}
