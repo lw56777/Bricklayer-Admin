@@ -48,7 +48,7 @@ const switchToSignIn = () => {
     >
       <!-- 注册表单容器 -->
       <div
-        class="form-container sign-up-container absolute top-0 left-0 w-1/2 h-full transition-all duration-600 z-1 opacity-0"
+        class="sign-up-container absolute top-0 left-0 w-1/2 h-full transition-all duration-600 z-1 opacity-0"
       >
         <div
           class="flex flex-col px-12 h-full justify-center items-center text-center bg-[var(--el-bg-color)]"
@@ -74,7 +74,7 @@ const switchToSignIn = () => {
 
       <!-- 登录表单容器 -->
       <div
-        class="form-container sign-in-container absolute top-0 left-0 w-1/2 h-full transition-all duration-600 z-2"
+        class="sign-in-container absolute top-0 left-0 w-1/2 h-full transition-all duration-600 z-2"
       >
         <div
           class="flex flex-col px-12 h-full justify-center items-center text-center bg-[var(--el-bg-color)]"
@@ -103,16 +103,16 @@ const switchToSignIn = () => {
         class="overlay-container absolute top-0 left-1/2 w-1/2 h-full overflow-hidden transition-transform duration-600 z-100"
       >
         <div
-          class="overlay text-white relative left--100% h-full w-200% transform translate-x-0 transition-transform duration-600"
+          class="overlay text-white relative left--100% h-full w-200% transition-transform duration-600"
           :class="
             isRightPanelActive
               ? 'bg-gradient-to-r from-hex-6366f1 to-hex-8b5cf6'
-              : 'bg-gradient-to-r from-hex-409eff to-hex-2695fd'
+              : 'bg-gradient-to-r from-hex-60a5fa to-hex-2563eb'
           "
         >
           <!-- 左侧覆盖面板 -->
           <div
-            class="overlay-panel overlay-left absolute top-0 flex flex-col justify-center items-center px-10 h-full w-1/2 text-center transform translate-y--20% transition-transform duration-600"
+            class="overlay-left absolute top-0 flex flex-col justify-center items-center px-10 h-full w-1/2 text-center transform translate-y--20% transition-transform duration-600"
           >
             <h1 class="font-bold text-2xl mb-4">已有帐号？</h1>
             <el-button type="info" plain @click="switchToSignIn">
@@ -122,7 +122,7 @@ const switchToSignIn = () => {
 
           <!-- 右侧覆盖面板 -->
           <div
-            class="overlay-panel overlay-right absolute top-0 right-0 flex flex-col justify-center items-center px-10 h-full w-1/2 text-center transform translate-y-0 transition-transform duration-600"
+            class="overlay-right absolute top-0 right-0 flex flex-col justify-center items-center px-10 h-full w-1/2 text-center transition-transform duration-600"
           >
             <h1 class="font-bold text-2xl mb-4">没有帐号？</h1>
             <el-button type="info" plain @click="switchToSignUp">
@@ -161,7 +161,5 @@ const switchToSignIn = () => {
 
 .right-panel-active .overlay-right {
   transform: translateY(20%);
-  color: #043dfa;
-  background-color: #409eff;
 }
 </style>
