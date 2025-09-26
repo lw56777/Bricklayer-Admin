@@ -100,7 +100,7 @@ const columns = computed(() => [
     prop: 'type',
     label: '类型',
     type: 'select',
-    props: {
+    compProps: {
       placeholder: '请选择类型',
       options: [
         { label: 'Online activities', value: 'Online activities' },
