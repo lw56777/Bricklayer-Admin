@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { ElMessage } from 'element-plus';
-import { useTable } from '@bricklayer/hooks/useTable';
+import { useTable } from '~/hooks/useTable';
 import type { TEmitsAttrs } from '@bricklayer/components/BaSearch';
 import { useBaDialog } from '@bricklayer/components/BaDialog';
 import DialogContent from '@bricklayer/components/BaDialog/index.vue';

@@ -1,7 +1,6 @@
 import { computed, ref } from 'vue';
-// import { useRequest } from '~/hooks/useRequset';
-import { usePagination } from './usePagination';
-// import { getTableData } from '~/request'; // 需要从应用层传入
+import { usePagination } from '@bricklayer/hooks/usePagination';
+import { getTableData } from '~/request';
 
 interface IParams {
   keywords: string;
@@ -20,14 +19,8 @@ class CParams implements IParams {
 export function useTable(service?: any) {
   const _params = ref(new CParams());
 
-  // const { loading, params, data, run } = useRequest(getTableData, {
-  //   data: [],
-  //   params: _params,
-  // });
-
-  // 分页
   const { loading, params, data, run, pageProps, currentPage, pageSize } =
-    usePagination(service || (() => Promise.resolve({ list: [], total: 0 })), {
+    usePagination(service || getTableData, {
       data: [],
       params: _params,
     });
