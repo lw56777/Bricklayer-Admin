@@ -10,7 +10,8 @@
   "dependencies": {
     "vue": "^3.5.18",
     "vue-router": "^4.5.1",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "@element-plus/icons-vue": "^2.3.2"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",

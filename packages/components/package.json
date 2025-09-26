@@ -13,6 +13,7 @@
   },
   "peerDependencies": {
     "vue": "^3.5.18",
-    "element-plus": "^2.11.2"
+    "element-plus": "^2.11.2",
+    "@element-plus/icons-vue": "^2.3.2"
   }
 }
