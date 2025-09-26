@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useBaDialog } from '@bricklayer/components/BaDialog';
-import DialogContent from '@bricklayer/components/BaDialog/index.vue';
+import DialogContent from '~/components/DialogContent.vue';
 
 const handleDialog = () => {
   const { createConfirm, createCancel } = useBaDialog(
@@ -23,7 +23,7 @@ const handleDialog = () => {
         createConfirm({
           name: '重置',
           hidden: false,
-          click: 'validate',
+          click: 'reset',
         }),
         // 默认确认按钮
         createConfirm(),

@@ -48,8 +48,8 @@
       <el-switch v-model="ruleForm.delivery" />
     </el-form-item>
 
-    <el-form-item label="Activity type" prop="type">
-      <el-checkbox-group v-model="ruleForm.type">
+    <el-form-item label="Activity type" prop="activityType">
+      <el-checkbox-group v-model="ruleForm.activityType">
         <el-checkbox value="Online activities" name="type">
           Online activities
         </el-checkbox>
@@ -80,7 +80,6 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
-
 import type { FormInstance, FormRules } from 'element-plus';
 
 const props = defineProps({
@@ -97,13 +96,12 @@ const ruleForm: any = ref({
   date1: '',
   date2: '',
   delivery: false,
-  type: [],
+  activityType: [],
   resource: '',
   desc: '',
 });
 
 onMounted(() => {
-  console.log('props.row', props.row);
   if (props.row) {
     ruleForm.value = props.row;
   }
@@ -137,7 +135,7 @@ const rules: FormRules = {
       trigger: 'change',
     },
   ],
-  type: [
+  activityType: [
     {
       type: 'array',
       required: true,
@@ -166,7 +164,6 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 
   await formEl.validate(async (valid, fields) => {
     if (valid) {
-      console.log('submit!');
       await getData();
     } else {
       return Promise.reject(new Error('验证失败'));
@@ -181,7 +178,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 defineExpose({
   validate: () => ruleFormRef.value?.validate(),
-  reset: () => ruleFormRef.value?.resetFields(),
+  reset: () => resetForm(ruleFormRef.value),
   confirm: () => submitForm(ruleFormRef.value),
 });
 </script>

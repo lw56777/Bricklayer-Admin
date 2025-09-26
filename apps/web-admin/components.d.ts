@@ -10,11 +10,11 @@ declare module 'vue' {
   export interface GlobalComponents {
     Aside: typeof import('./src/components/Layout/Aside.vue')['default']
     Background: typeof import('./src/components/Background/index.vue')['default']
-    BaDialog: typeof import('./../../packages/components/BaDialog/index.vue')['default']
     BaForm: typeof import('./../../packages/components/BaForm/index.vue')['default']
     BaSearch: typeof import('./../../packages/components/BaSearch/index.vue')['default']
     BaTable: typeof import('./../../packages/components/BaTable/index.vue')['default']
     BaTableColumn: typeof import('./../../packages/components/BaTable/BaTableColumn/index.vue')['default']
+    DialogContent: typeof import('./src/components/DialogContent.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']

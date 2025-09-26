@@ -4,7 +4,7 @@ import { ElMessage } from 'element-plus';
 import { useTable } from '~/hooks/useTable';
 import type { TEmitsAttrs } from '@bricklayer/components/BaSearch';
 import { useBaDialog } from '@bricklayer/components/BaDialog';
-import DialogContent from '@bricklayer/components/BaDialog/index.vue';
+import DialogContent from '~/components/DialogContent.vue';
 
 const {
   params,
