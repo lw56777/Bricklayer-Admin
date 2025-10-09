@@ -46,12 +46,21 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/basic',
         name: 'basic',
-        redirect: '/basic/table-example',
+        redirect: '/basic/button-example',
         meta: {
           title: '基础示例',
           icon: 'Menu',
         },
         children: [
+          {
+            path: '/basic/button-example',
+            name: 'BasicButtonExample',
+            component: () => import('../views/basic/ButtonExample.vue'),
+            meta: {
+              title: '按钮示例',
+              icon: 'Money',
+            },
+          },
           {
             path: '/basic/table-example',
             name: 'BasicTableExample',

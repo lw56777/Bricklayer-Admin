@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Aside: typeof import('./src/components/Layout/Aside.vue')['default']
+    BaButton: typeof import('./../../packages/components/BaButton/index.vue')['default']
     Background: typeof import('./src/components/Background/index.vue')['default']
     BaForm: typeof import('./../../packages/components/BaForm/index.vue')['default']
     BaSearch: typeof import('./../../packages/components/BaSearch/index.vue')['default']
