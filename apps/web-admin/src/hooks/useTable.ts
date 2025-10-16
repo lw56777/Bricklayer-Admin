@@ -1,6 +1,9 @@
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
+import { ElMessage } from 'element-plus';
 import { usePagination } from '@bricklayer/hooks/usePagination';
+import { useBaDialog } from '@bricklayer/components/BaDialog';
 import { getTableData } from '~/request';
+import DialogContent from '~/components/DialogContent.vue';
 
 interface IParams {
   keywords: string;
@@ -17,12 +20,10 @@ class CParams implements IParams {
 }
 
 export function useTable(service?: any) {
-  const _params = ref(new CParams());
-
-  const { loading, params, data, run, pageProps, currentPage, pageSize } =
+  const { loading, params, data, run, pageProps, pageSize, currentPage } =
     usePagination(service || getTableData, {
-      data: [],
-      params: _params,
+      initData: [],
+      params: new CParams(),
     });
 
   const search = () => {
@@ -38,18 +39,51 @@ export function useTable(service?: any) {
     run();
   };
 
-  const onAdd = async () => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
+  const onAdd = () => {
+    openDialog();
   };
 
-  const onEdit = async (row: any) => {
-    console.log('onEdit', row);
-    await new Promise(resolve => setTimeout(resolve, 1000));
+  const onEdit = (row: any) => {
+    openDialog(row);
+  };
+
+  const openDialog = (row?: any) => {
+    const { createCancel, createConfirm } = useBaDialog(
+      DialogContent,
+      {
+        row,
+      },
+      {
+        title: row ? '编辑数据' : '添加数据',
+        closeOnClickModal: false,
+        footer: () => [createCancel(), createConfirm()],
+        cb: refresh,
+      },
+    );
   };
 
   const onDelete = async (row: any) => {
-    console.log('onDelete', row);
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const { createConfirm, createCancel } = useBaDialog(
+      '确定要删除吗？',
+      {
+        row,
+      },
+      {
+        title: '删除数据',
+        closeOnClickModal: false,
+        width: '420px',
+        footer: () => [
+          createCancel(),
+          createConfirm({
+            click: async () => {
+              await await new Promise(resolve => setTimeout(resolve, 1000));
+              ElMessage.success('删除成功');
+              refresh();
+            },
+          }),
+        ],
+      },
+    );
   };
 
   return {
@@ -64,7 +98,7 @@ export function useTable(service?: any) {
     onEdit,
     onDelete,
     pageProps,
-    currentPage,
     pageSize,
+    currentPage,
   };
 }

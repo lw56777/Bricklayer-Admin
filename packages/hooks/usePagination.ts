@@ -1,6 +1,7 @@
 import { computed, ref, watch } from 'vue';
 import type { PaginationProps } from 'element-plus';
-import { useRequest, type TService, type IOptions } from './useRequset';
+import { omit } from 'lodash-es';
+import { useRequest, type TService, type IOptions } from './useRequest';
 
 interface IPagination {
   totalKey: string;
@@ -10,7 +11,10 @@ interface IPagination {
 
 export type TPageProps = Partial<IPagination> & Partial<PaginationProps>;
 
-export function usePagination(service: TService, options: IOptions) {
+export function usePagination(
+  service: TService,
+  options: IOptions & { pagination?: TPageProps },
+) {
   const { params: defaultParams, pagination } = options;
 
   const {
@@ -21,15 +25,13 @@ export function usePagination(service: TService, options: IOptions) {
     currentPage = 1,
   } = pagination || {};
 
-  const _params = {
-    ...defaultParams.value,
-    [pageSizeKey]: pageSize,
-    [currentPageKey]: currentPage,
-  };
-
   const { loading, params, data, run } = useRequest(service, {
-    ...options,
-    params: _params,
+    ...omit(options, ['params', 'pagination']),
+    params: {
+      ...defaultParams.value,
+      [pageSizeKey]: pageSize,
+      [currentPageKey]: currentPage,
+    },
   });
 
   const pageProps = ref({
@@ -40,14 +42,14 @@ export function usePagination(service: TService, options: IOptions) {
     [totalKey]: computed(() => data.value?.[totalKey] || 0),
   });
 
-  const _currentPage = ref(params.value[currentPageKey]);
   const _pageSize = ref(params.value[pageSizeKey]);
+  const _currentPage = ref(params.value[currentPageKey]);
 
   watch(
-    () => [_currentPage, _pageSize],
+    () => [_pageSize, _currentPage],
     () => {
-      params.value[currentPageKey] = _currentPage.value;
       params.value[pageSizeKey] = _pageSize.value;
+      params.value[currentPageKey] = _currentPage.value;
       run();
     },
     {
@@ -59,8 +61,8 @@ export function usePagination(service: TService, options: IOptions) {
     pageProps,
     loading,
     params,
-    currentPage: _currentPage,
     pageSize: _pageSize,
+    currentPage: _currentPage,
     data,
     run,
   };

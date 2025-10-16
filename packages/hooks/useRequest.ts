@@ -1,16 +1,14 @@
 import { isRef, ref } from 'vue';
 import { debounce } from 'lodash-es';
 import { isArray } from '@bricklayer/utils/tools';
-import { type TPageProps } from './usePagination';
 
 export type TService = (...args: any[]) => Promise<any> | Promise<any>[];
 
 export interface IOptions {
-  data?: any; // 初始值
+  initData?: any; // 初始值
   immediate?: boolean; // 是否立即执行
   delay?: number; // 防抖等待时间
   params?: any; // 请求参数
-  pagination?: TPageProps;
 }
 
 const defaultOptions: IOptions = {
@@ -19,30 +17,20 @@ const defaultOptions: IOptions = {
   params: {},
 };
 
-// 假设相应结构
-// interface IResult {
-//   code: number;
-//   data: {
-//     list: [];
-//     total: 0;
-//   };
-//   message: string;
-// }
-
 export function useRequest(service: TService, options?: IOptions) {
   const {
-    data: defaultData,
+    initData,
     immediate,
     delay,
-    params,
+    params: _params,
   } = {
     ...defaultOptions,
     ...options,
   };
 
   const loading = ref(false);
-  const _params = isRef(params) ? params : ref(params);
-  const data = ref(defaultData);
+  const params = isRef(_params) ? _params : ref(_params);
+  const data = ref(initData);
   const error = ref(null);
   const isArr = isArray(service);
 
@@ -52,16 +40,16 @@ export function useRequest(service: TService, options?: IOptions) {
 
     if (isArr) {
       service.forEach(item => {
-        queue.push(item(_params.value));
+        queue.push(item(params.value));
       });
     } else {
-      queue.push(service(_params.value) as Promise<any>);
+      queue.push(service(params.value) as Promise<any>);
     }
 
     Promise.all(queue)
       .then(res => {
         console.log('res', res);
-        data.value = isArr ? res : res[0].data;
+        data.value = isArr ? res.map(item => item.data) : res[0].data;
       })
       .catch(err => {
         error.value = err;
@@ -79,7 +67,7 @@ export function useRequest(service: TService, options?: IOptions) {
 
   return {
     loading,
-    params: _params,
+    params,
     data,
     error,
     run,

@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { ElMessage } from 'element-plus';
 import { useTable } from '~/hooks/useTable';
 import type { TEmitsAttrs } from '@bricklayer/components/BaSearch';
-import { useBaDialog } from '@bricklayer/components/BaDialog';
-import DialogContent from '~/components/DialogContent.vue';
 
 const {
-  params,
   loading,
+  params,
   data,
   search,
   reset,
@@ -17,8 +14,8 @@ const {
   onEdit,
   onDelete,
   pageProps,
-  currentPage,
   pageSize,
+  currentPage,
 } = useTable();
 
 const items = computed(() => [
@@ -33,8 +30,8 @@ const items = computed(() => [
   {
     label: '地区',
     prop: 'region',
-    compType: 'select',
     hidden: params.value.check,
+    compType: 'select',
     compProps: {
       placeholder: '请选择地区',
       options: [
@@ -81,7 +78,7 @@ const columns = computed(() => [
     prop: 'name',
     label: '姓名',
     width: '180',
-    type: 'input',
+    compType: 'input',
   },
   {
     prop: 'region',
@@ -95,12 +92,12 @@ const columns = computed(() => [
   {
     prop: 'delivery',
     label: '是否立即配送',
-    type: 'switch',
+    compType: 'switch',
   },
   {
     prop: 'type',
     label: '类型',
-    type: 'select',
+    compType: 'select',
     compProps: {
       placeholder: '请选择类型',
       options: [
@@ -134,79 +131,9 @@ const columns = computed(() => [
   {
     label: '操作',
     prop: 'actions',
-    width: '120',
+    width: '140',
   },
 ]);
-
-const add = () => {
-  const { createConfirm, createCancel } = useBaDialog(
-    DialogContent,
-    {},
-    {
-      title: '添加数据',
-      closeOnClickModal: false,
-      footer: () => [
-        createCancel(),
-        createConfirm({
-          name: '提交',
-          click: async (instnce: any) => {
-            await instnce.validate();
-            await onAdd();
-            ElMessage.success('添加成功');
-            refresh();
-          },
-        }),
-      ],
-    },
-  );
-};
-
-const edit = (row: any) => {
-  const { instnce, createConfirm, createCancel } = useBaDialog(
-    DialogContent,
-    {
-      row,
-    },
-    {
-      title: '编辑数据',
-      closeOnClickModal: false,
-      footer: () => [
-        createCancel(),
-        createConfirm({
-          name: '更新',
-          click: async () => {
-            await instnce.value.validate();
-            await onEdit(row);
-            ElMessage.success('更新成功');
-            refresh();
-          },
-        }),
-      ],
-    },
-  );
-};
-
-const del = (row: any) => {
-  const { createConfirm, createCancel } = useBaDialog(
-    '确定要删除吗？',
-    {},
-    {
-      title: '删除数据',
-      closeOnClickModal: false,
-      width: '420px',
-      footer: () => [
-        createCancel(),
-        createConfirm({
-          click: async () => {
-            await onDelete(row);
-            ElMessage.success('删除成功');
-            refresh();
-          },
-        }),
-      ],
-    },
-  );
-};
 </script>
 
 <template>
@@ -217,7 +144,7 @@ const del = (row: any) => {
 
     <el-card class="mt-2">
       <template #header>
-        <el-button type="primary" @click="add">添加</el-button>
+        <el-button type="primary" @click="onAdd">添加</el-button>
       </template>
 
       <BaTable
@@ -226,16 +153,19 @@ const del = (row: any) => {
         :columns="columns"
         border
         :pageProps="pageProps"
-        v-model:currentPage="currentPage"
         v-model:pageSize="pageSize"
+        v-model:currentPage="currentPage"
       >
         <template #date="{ row }">
           <el-tag>{{ row.date1 + ' ~~~ ' + row.date2 }}</el-tag>
         </template>
 
+        <template #actions-header="{ column, $index }">
+          自定义表头: {{ column.label }}
+        </template>
         <template #actions="{ row }">
-          <el-button type="primary" link @click="edit(row)">编辑</el-button>
-          <el-button type="danger" link @click="del(row)">删除</el-button>
+          <el-button type="primary" link @click="onEdit(row)">编辑</el-button>
+          <el-button type="danger" link @click="onDelete(row)">删除</el-button>
         </template>
       </BaTable>
     </el-card>

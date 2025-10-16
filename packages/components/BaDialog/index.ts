@@ -6,6 +6,7 @@ import { isString } from '@bricklayer/utils/tools';
 
 export type TDialogProps = Partial<DialogProps> & {
   footer?: (() => VNode) | (() => VNode[]) | Component;
+  cb?: null | (() => void);
 };
 
 type TFooterBtnProps = Partial<ButtonProps> & {
@@ -26,6 +27,7 @@ export function useBaDialog(
 
   const modal = ref(true);
   const instnce = ref();
+  const cb = DialogProps.cb;
 
   const dialog = () =>
     h(
@@ -70,6 +72,8 @@ export function useBaDialog(
             } else {
               await click?.(instnce.value);
             }
+
+            cb?.();
 
             hidden && close();
           } catch (error) {

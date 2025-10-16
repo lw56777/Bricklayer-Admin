@@ -78,7 +78,6 @@ const getAttrs = (item: any): TEmitsAttrs | false => {
 
 const emitOrder = ['onSearch', 'onReset', 'onRefresh'];
 const defaultEmits = computed(() => {
-  // 如果用户传递了自定义 emits，就不需要计算默认 emits
   if (props.emits.length > 0) {
     return [];
   }

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, useTemplateRef, h, type ComputedRef } from 'vue';
-import { ElSwitch } from 'element-plus';
+import { ref, computed, useTemplateRef, type ComputedRef } from 'vue';
 import type { FormRules } from 'element-plus';
 import { useBaForm, type TFormItem } from '@bricklayer/components/BaForm';
 
@@ -83,15 +82,14 @@ const formItems: ComputedRef<TFormItem[]> = computed(() => [
   {
     label: '姓名',
     prop: 'name',
-    // compType: 'input',
     placeholder: '请输入姓名',
     span: 12,
   },
   {
     label: '地区',
     prop: 'region',
-    hidden: !formData.value.delivery,
-    comType: 'select',
+    hidden: formData.value.delivery,
+    compType: 'cascader',
     compProps: {
       placeholder: '请选择地区',
       options: [

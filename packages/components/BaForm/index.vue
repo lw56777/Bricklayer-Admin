@@ -16,14 +16,14 @@ const props = defineProps({
   },
 });
 
+const items = computed(() => {
+  return props.items.filter(item => !item.hidden);
+});
+
 const formData = defineModel<any>('modelValue');
 const formInstance = useTemplateRef<FormInstance>('formRef');
 
 const { getComponent } = useDynamicComponent('input');
-
-const items = computed(() => {
-  return props.items.filter(item => !item.hidden);
-});
 
 defineExpose({
   validate: () => formInstance.value?.validate(),

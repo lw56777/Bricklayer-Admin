@@ -11,6 +11,9 @@ importers:
       '@element-plus/icons-vue':
         specifier: ^2.3.2
         version: 2.3.2(vue@3.5.21(typescript@5.8.3))
+      element-plus:
+        specifier: ^2.11.2
+        version: 2.11.2(vue@3.5.21(typescript@5.8.3))
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -75,18 +78,12 @@ importers:
       '@bricklayer/utils':
         specifier: workspace:*
         version: link:../../packages/utils
-      '@element-plus/icons-vue':
-        specifier: ^2.3.2
-        version: 2.3.2(vue@3.5.21(typescript@5.8.3))
       '@vueuse/core':
         specifier: ^13.9.0
         version: 13.9.0(vue@3.5.21(typescript@5.8.3))
       axios:
         specifier: ^1.12.2
         version: 1.12.2
-      element-plus:
-        specifier: ^2.11.2
-        version: 2.11.2(vue@3.5.21(typescript@5.8.3))
 
   packages/components:
     dependencies:

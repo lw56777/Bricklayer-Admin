@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Age: typeof import('./src/components/Age.vue')['default']
     Aside: typeof import('./src/components/Layout/Aside.vue')['default']
     BaButton: typeof import('./../../packages/components/BaButton/index.vue')['default']
     Background: typeof import('./src/components/Background/index.vue')['default']
@@ -48,6 +49,8 @@ declare module 'vue' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTableColunm: typeof import('element-plus/es')['ElTableColunm']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTimePicker: typeof import('element-plus/es')['ElTimePicker']
     Header: typeof import('./src/components/Layout/Header/index.vue')['default']

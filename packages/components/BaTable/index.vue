@@ -21,18 +21,11 @@ const emits = defineEmits(['current-change', 'size-change']);
 
 const tableData = defineModel<any[]>('modelValue');
 
-const columns = computed(() => {
-  return props.columns.filter(column => !column.hidden);
-});
-
 const currentPage = defineModel<number>('currentPage');
 const pageSize = defineModel<number>('pageSize');
-
-const pageProps = computed(() => {
-  return {
-    ...omit(props.pageProps, ['pageSize', 'currentPage']),
-  };
-});
+const pageProps = computed(() =>
+  omit(props.pageProps, ['pageSize', 'currentPage']),
+);
 
 defineExpose({} as ComponentInstance<typeof ElTable>);
 </script>
