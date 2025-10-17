@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Age: typeof import('./src/components/Age.vue')['default']
+    AgeComp: typeof import('./src/components/AgeComp.vue')['default']
     Aside: typeof import('./src/components/Layout/Aside.vue')['default']
     BaButton: typeof import('./../../packages/components/BaButton/index.vue')['default']
     Background: typeof import('./src/components/Background/index.vue')['default']
@@ -54,13 +55,11 @@ declare module 'vue' {
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTimePicker: typeof import('element-plus/es')['ElTimePicker']
     Header: typeof import('./src/components/Layout/Header/index.vue')['default']
+    HeaderComp: typeof import('./src/components/HeaderComp.vue')['default']
     Layout: typeof import('./src/components/Layout/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Setting: typeof import('./src/components/Layout/Header/Setting.vue')['default']
     Theme: typeof import('./src/components/Layout/Header/Theme.vue')['default']
-  }
-  export interface GlobalDirectives {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

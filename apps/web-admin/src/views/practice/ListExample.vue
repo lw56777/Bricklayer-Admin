@@ -160,7 +160,7 @@ const columns = computed(() => [
           <el-tag>{{ row.date1 + ' ~~~ ' + row.date2 }}</el-tag>
         </template>
 
-        <template #actions-header="{ column, $index }">
+        <template #actions-header="{ column }">
           自定义表头: {{ column.label }}
         </template>
         <template #actions="{ row }">

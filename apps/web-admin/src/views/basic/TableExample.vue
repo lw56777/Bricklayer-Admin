@@ -2,7 +2,8 @@
 import { h, ref, computed, type ComputedRef } from 'vue';
 import { ElTag, ElSwitch } from 'element-plus';
 import type { TTableColumn } from '@bricklayer/components/BaTableColumn';
-import AgeComp from '~/components/Age.vue';
+import HeaderComp from '~/components/HeaderComp.vue';
+import AgeComp from '~/components/AgeComp.vue';
 
 const tableData = ref([
   {
@@ -59,8 +60,9 @@ const columns: ComputedRef<TTableColumn[]> = computed(() => [
   {
     prop: 'name',
     label: '姓名',
-    width: '90',
+    width: '120',
     align: 'center',
+    header: 'nameHeader', // 自定义表头-字符串对应插槽name
   },
 
   // 自定义列-函数组件
@@ -68,6 +70,8 @@ const columns: ComputedRef<TTableColumn[]> = computed(() => [
     prop: 'gender',
     label: '性别',
     width: '120',
+    header: ({ column }) =>
+      h(ElTag, { size: 'large' }, () => `自定义: ${column.label}`), // 自定义表头-函数组件
     compType: ({ row }) =>
       h(ElSwitch, {
         modelValue: row.gender,
@@ -83,6 +87,7 @@ const columns: ComputedRef<TTableColumn[]> = computed(() => [
     prop: 'age',
     label: '年龄',
     width: '180',
+    header: HeaderComp, // 自定义表头-组件对象
     compType: AgeComp,
   },
 
@@ -125,7 +130,6 @@ const columns: ComputedRef<TTableColumn[]> = computed(() => [
     ],
   },
 
-  // 多插槽（header和default）
   {
     prop: 'actions',
     label: '操作',
@@ -135,15 +139,12 @@ const columns: ComputedRef<TTableColumn[]> = computed(() => [
 
 <template>
   <BaTable v-model="tableData" :columns="columns" border>
-    <!-- 默认插槽 -->
     <template #name="{ row }">
       <el-tag type="success" size="large">{{ row.name }}</el-tag>
     </template>
 
-    <!-- 多插槽 -->
-    <template #actions-header="{ column, $index }">
-      自定义表头: {{ column.label + $index }}
-    </template>
+    <template #nameHeader="{ column }">自定义: {{ column.label }}</template>
+
     <template #actions="{ row }">
       <el-button @click="console.log(row)">查看</el-button>
     </template>
